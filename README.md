@@ -2,7 +2,7 @@
 
 [![Docker
 Pulls](https://img.shields.io/docker/pulls/bradleyburgess/docker-dropbox.svg?maxAge=2592000)][hub]
-[![License](https://img.shields.io/github/license/janeczku/docker-alpine-kubernetes.svg?maxAge=2592000)]()
+![License](https://img.shields.io/github/license/bradleyburgess/docker-dropbox)
 
 [hub]: https://hub.docker.com/r/bradleyburgess/docker-dropbox/
 
@@ -17,7 +17,7 @@ Run Dropbox inside Docker. Fully working with local host folder mount or
 inter-container linking (via `--volumes-from`).
 
 This repository provides the
-[bradleyburgess/docker-dropbox](https://registry.hub.docker.com/u/bradleyburgess/docker-dropbox/)
+[bradleyburgess/docker-dropbox](https://registry.hub.docker.com/r/bradleyburgess/docker-dropbox/)
 image.
 
 ## Usage examples
