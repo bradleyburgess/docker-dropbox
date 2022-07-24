@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 MAINTAINER Bradley Burgess <bradleyburgess@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
