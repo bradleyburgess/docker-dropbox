@@ -5,22 +5,22 @@ ENV DEBIAN_FRONTEND noninteractive
 # Following 'How do I add or remove Dropbox from my Linux repository?' - https://www.dropbox.com/en/help/246
 RUN apt-get -qqy update \
 	&& apt-get -qqy install \
-    ca-certificates \
-    libglapi-mesa \
-    libglib2.0-0 \
-    libxcb-dri2-0 \
-    libxcb-dri3-0 \
-    libxcb-glx0 \
-    libxcb-present0 \
-    libxcb-sync1 \
-    libxdamage1 \
-    libxext6 \
-    libxshmfence1 \
-    libxxf86vm1 \
-    wget \
-  && cd /tmp \
-  && wget -O dropbox.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb \
-  && apt-get -qqy install ./dropbox.deb \
+	ca-certificates \
+	libglapi-mesa \
+	libglib2.0-0 \
+	libxcb-dri2-0 \
+	libxcb-dri3-0 \
+	libxcb-glx0 \
+	libxcb-present0 \
+	libxcb-sync1 \
+	libxdamage1 \
+	libxext6 \
+	libxshmfence1 \
+	libxxf86vm1 \
+	wget \
+	&& cd /tmp \
+	&& wget -O dropbox.deb https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb \
+	&& apt-get -qqy install ./dropbox.deb \
 	# Perform image clean up.
 	&& apt-get -qqy clean \
 	&& apt-get -qqy autoclean \
@@ -64,9 +64,9 @@ COPY dropbox /usr/bin/dropbox
 WORKDIR /dbox/Dropbox
 EXPOSE 17500
 VOLUME ["/dbox/.dropbox", "/dbox/Dropbox"]
-HEALTHCHECK --interval=30s \
-  --timeout=30s \
-  --start-period=5s \
-  --retries=3 \
-  CMD dropbox status || exit 1
 ENTRYPOINT ["/root/run"]
+HEALTHCHECK --interval=30s \
+	--timeout=30s \
+	--start-period=5s \
+	--retries=3 \
+	CMD dropbox status || exit 1
