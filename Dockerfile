@@ -53,7 +53,9 @@ RUN mkdir -p /opt/dropbox \
 	&& chmod o-w /tmp \
 	&& chmod g-w /tmp \
 	# Prepare for command line wrapper
-	&& mv /usr/bin/dropbox /usr/bin/dropbox-cli
+	&& mv /usr/bin/dropbox /usr/bin/dropbox-cli \
+	# Suppress deprecation warning
+	&& sed -i 's/isSet/is_set/g' /bin/dropbox-cli
 
 # Install init script and dropbox command line wrapper
 COPY run /root/
@@ -62,4 +64,9 @@ COPY dropbox /usr/bin/dropbox
 WORKDIR /dbox/Dropbox
 EXPOSE 17500
 VOLUME ["/dbox/.dropbox", "/dbox/Dropbox"]
+HEALTHCHECK --interval=30s \
+  --timeout=30s \
+  --start-period=5s \
+  --retries=3 \
+  CMD dropbox status || exit 1
 ENTRYPOINT ["/root/run"]
